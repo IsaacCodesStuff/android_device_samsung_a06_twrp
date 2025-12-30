@@ -1,16 +1,16 @@
-name: SkyHawk - Build
+name: SkyHawk [SHRP]
 
 on:
   workflow_dispatch:
     inputs:
       MANIFEST:
-        description: 'SHRP'
+        description: 'SHRP Manifest (For old SHRP manifest, use v3_9.0, v3_11.0)'
         required: true
         default: 'https://github.com/SHRP-Reborn/manifest.git'
       MANIFEST_BRANCH:
         description: 'SHRP Manifest Branch'
         required: true
-        default: 'shrp-12.1'
+        default: ''
         type: choice
         options:
         - shrp-12.1
@@ -20,19 +20,19 @@ on:
       DEVICE_TREE:
         description: 'Custom Recovery Tree' # Your already made Device Tree for TWRP
         required: true
-        default: 'https://github.com/IsaacCodesStuff/android_device_samsung_a06_twrp' 
+        default: 'https://github.com/mlm-games/twrp_lenovo_7305x_m7_mt8765_P' 
       DEVICE_TREE_BRANCH:
         description: 'Custom Recovery Tree Branch' # Your Device Tree Branch, make sure it's right.
         required: true
-        default: 'shrp-12.1'
+        default: 'shrp-9.0'
       DEVICE_PATH:
         description: 'Specify your Device Path' # As is, just like your DEVICE_PATH in your BoardConfig.mk
         required: true
-        default: 'device/samsung/a06'
+        default: 'device/lenovo/mt8765_P'
       DEVICE_NAME:
         description: 'Specify your Device Codename' # As is, just like your PRODUCT_DEVICE in your device tree.
         required: true
-        default: 'a06'
+        default: 'mt8765_P'
       BUILD_TARGET:
         description: 'Specify your Build Target' # Pick among boot, recovery and vendor_boot
         required: true
@@ -43,19 +43,14 @@ on:
         - recovery
         - vendorboot
       LDCHECK:
-        description: 'Path of blobs to check' 
-        required: true
-        default: 'system/bin/stk_rec_bypass'
-      RECOVERY_TAR:
-        description: 'Release recovery.tar For Samsung devices'
+        description: 'Use LDCHECK'
         required: false
-        default: false
+        default: 'false'
         type: boolean
-      RECOVERY_INSTALLER:
-        description: 'Include recovery installer zip'
-        type: boolean
+      LDCHECKPATH:
+        description: 'Path of blobs to check' # Use it know what kind of dependencies your missing for decryption blobs.
         required: true
-        default: true
+        default: 'system/bin/qseecomd'
 
 jobs:
   build:
@@ -68,21 +63,21 @@ jobs:
     permissions:
       contents: write
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+    - name: Check Out
+      uses: actions/checkout@v6
       
     - name: Display Inputs
       run: |
-        echo "::group::User Environment Variables"
         echo "Displaying variables/inputs."
-        echo "Include Recovery Installer: ${{ github.event.inputs.RECOVERY_INSTALLER }}"
-        echo "Release recovery.tar For Samsung devices: ${{ github.event.inputs.RECOVERY_TAR }}"
-        echo "::endgroup::"
+        echo "Manifest Branch: ${{ inputs.MANIFEST_BRANCH }}"
+        echo "Device Tree: ${{ inputs.DEVICE_TREE }}"
+        echo "Device Branch: ${{ inputs.DEVICE_TREE_BRANCH }}"
+        echo "Build Target: ${{ inputs.BUILD_TARGET }}image"
 
-    - name: Clean-up
+    - name: Cleanup
       uses: rokibhasansagar/slimhub_actions@main
       
-    - name: Swap Space
+    - name: Set Swap Space
       uses: pierotofy/set-swap-space@master
       with:
         swap-size-gb: 24
