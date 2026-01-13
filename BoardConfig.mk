@@ -66,11 +66,7 @@ TW_MAX_BRIGHTNESS := 255
 #Post Patches (IsaacCodesStuff)
 TW_NO_REBOOT_BOOTLOADER := true
 TWHAVE_SELINUX := true
-TW_CUSTOM_CPU_TEMP_PATH := true
 TW_DEFAULT_BRIGHTNESS := 150
-TW_USE_SAMSUNG_JDM_HAPTICS := true
-TW_JDM_HAPTICS_PATH := /sys/devices/platform/regulator-vibrator/leds/vibrator/brightness
-TW_MAX_VIBRATION_INTENSITY := 200
 
 # Architecture
 TARGET_ARCH := arm64
