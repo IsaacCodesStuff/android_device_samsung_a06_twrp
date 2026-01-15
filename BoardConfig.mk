@@ -5,6 +5,9 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+# PBRP ONLY STUFF
+# PB_TORCH_PATH := /sys/class/leds/flashlight
+
 # Device Path
 DEVICE_PATH := device/samsung/a06
 
