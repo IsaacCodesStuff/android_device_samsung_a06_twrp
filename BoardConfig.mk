@@ -5,9 +5,6 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-# PBRP ONLY STUFF
-# PB_TORCH_PATH := /sys/class/leds/flashlight
-
 # Device Path
 DEVICE_PATH := device/samsung/a06
 
@@ -60,7 +57,7 @@ TARGET_USES_MKE2FS := true
 TARGET_USES_LOGD := true
 
 # A06 TWRP specific
-TW_MTP_DEVICE := "Galaxy A06"
+TW_MTP_DEVICE := "Galaxy A06 4G"
 TW_FRAMERATE := 60
 TW_Y_OFFSET := 50
 TW_H_OFFSET := -50
@@ -70,6 +67,7 @@ TW_MAX_BRIGHTNESS := 255
 TW_NO_REBOOT_BOOTLOADER := true
 TWHAVE_SELINUX := true
 TW_DEFAULT_BRIGHTNESS := 150
+TW_NO_CPU_TEMP := true
 
 # Architecture
 TARGET_ARCH := arm64
@@ -149,7 +147,7 @@ TARGET_USES_VULKAN := true
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
 # Maintainer
-TW_DEVICE_VERSION := A06
+TW_DEVICE_VERSION := A06 4G
 
 # Recovery
 BOARD_INCLUDE_RECOVERY_DTBO := true
