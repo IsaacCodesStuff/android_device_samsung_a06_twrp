@@ -12,6 +12,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from a06 device
 $(call inherit-product, device/samsung/a06/device.mk)
 
+# Enable project quotas and casefolding for emulated storage without sdcardfs
+$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
+
 PRODUCT_DEVICE := a06
 PRODUCT_NAME := twrp_a06
 PRODUCT_BRAND := samsung
