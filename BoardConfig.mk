@@ -51,7 +51,6 @@ TW_H_OFFSET := -50
 TW_MAX_BRIGHTNESS := 255
 
 #Post Patches (IsaacCodesStuff)
-TW_NO_REBOOT_BOOTLOADER := true
 TW_DEFAULT_BRIGHTNESS := 150
 
 # Properties
